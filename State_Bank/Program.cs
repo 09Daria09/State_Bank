@@ -111,7 +111,7 @@ namespace State_Bank
             this.account = account;
             Initialize();
         }
-        public SilverState(State state)
+        public SilverState(State state) : this(state.GetBalance(), state.GetAccount())
         {
             Initialize();
             StateChangeCheck();
@@ -158,14 +158,20 @@ namespace State_Bank
     }
     public class RedState : State
     {
-        public RedState(State state)
+        public RedState(double balance, Account account)
+        {
+            this.balance = balance;
+            this.account = account;
+            Initialize();
+        }
+        public RedState(State state) : this(state.GetBalance(), state.GetAccount())
         {
             Initialize();
             StateChangeCheck();
         }
         private void Initialize()
         {
-            interest = 0.0;
+             interest = 0.0;
             lowerLimit = -100.0;
             upperLimit = 0.0;
         }
@@ -208,7 +214,7 @@ namespace State_Bank
             this.account = account;
             Initialize();
         }
-        public GoldState(State state)
+        public GoldState(State state) : this(state.GetBalance(), state.GetAccount())
         {
             Initialize();
             StateChangeCheck();
@@ -216,9 +222,9 @@ namespace State_Bank
 
         private void Initialize()
         {
-            interest = 0.07;
+           interest = 0.07;
             lowerLimit = 1000.0;
-            upperLimit = 10000000.0;
+            upperLimit = 10000000.0; 
         }
 
         private void StateChangeCheck()
